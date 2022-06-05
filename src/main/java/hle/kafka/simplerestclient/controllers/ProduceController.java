@@ -27,9 +27,9 @@ public class ProduceController {
             var sr = kafkaTemplate.send(model.getTopicName(), model.getKeyForPartition(), model.getMessageContent()).get();
             return sr.toString();
         } catch (ExecutionException e) {
-            return e.toString();
+            return e + "Execution Exception";
         } catch (InterruptedException e) {
-            return e.toString();
+            return e + "Interrupted Exception";
         }
 
     }
