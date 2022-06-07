@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class StringFetcher {
 
     @KafkaListener(topics="quickstart-events")
-    public void printTopicMessage(String message) {
-        log.info(message);
+    public void printTopicMessage(Integer message) {
+        log.info("Integrated Score: {}", message);
     }
 }

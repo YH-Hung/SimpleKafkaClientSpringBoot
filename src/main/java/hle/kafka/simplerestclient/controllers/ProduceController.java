@@ -18,13 +18,12 @@ public class ProduceController {
 
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
-    KafkaTemplate<String, String> kafkaTemplate;
+    KafkaTemplate<String, Integer> kafkaTemplate;
 
     @PostMapping
     public String postObj(@RequestBody ProduceDto model){
-        String backMsg = "";
         try {
-            var sr = kafkaTemplate.send(model.getTopicName(), model.getKeyForPartition(), model.getMessageContent()).get();
+            var sr = kafkaTemplate.send(model.getTopicName(), model.getKeyForPartition(), model.getScore()).get();
             return sr.toString();
         } catch (ExecutionException e) {
             return e + "Execution Exception";

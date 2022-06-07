@@ -8,5 +8,5 @@ import lombok.Setter;
 public class ProduceDto {
     String topicName;
     String keyForPartition;
-    String messageContent;
+    Integer score;
 }
