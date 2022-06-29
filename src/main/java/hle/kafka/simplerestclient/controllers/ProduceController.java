@@ -1,10 +1,8 @@
 package hle.kafka.simplerestclient.controllers;
 
 import hle.kafka.simplerestclient.dto.ProduceDto;
-import org.springframework.beans.factory.annotation.Autowired;
+import hle.kafka.simplerestclient.dto.ScoreResult;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.kafka.support.SendResult;
-import org.springframework.util.concurrent.ListenableFutureCallback;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,9 +14,11 @@ import java.util.concurrent.ExecutionException;
 @RequestMapping("/produce")
 public class ProduceController {
 
-    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
-    @Autowired
-    KafkaTemplate<String, Integer> kafkaTemplate;
+    private final KafkaTemplate<String, ScoreResult> kafkaTemplate;
+
+    public ProduceController(KafkaTemplate<String, ScoreResult> kafkaTemplate) {
+        this.kafkaTemplate = kafkaTemplate;
+    }
 
     @PostMapping
     public String postObj(@RequestBody ProduceDto model){

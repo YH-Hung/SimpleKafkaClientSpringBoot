@@ -5,8 +5,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ProduceDto {
-    String topicName;
-    String keyForPartition;
-    ScoreResult score;
+public class ScoreResult {
+
+    String name;
+    Integer score;
 }
